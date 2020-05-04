@@ -5,170 +5,226 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+    
     <title>声でじゃんけん</title>
 </head>
 <body>
+    <header>
+        <h1>音声じゃんけん</h1>
+    </header>
+    <main>
+       
+    <p class="a1">僕と<span class="text-c">声</span>を使ってじゃんけんしよう。</p>
 
-    <p>僕と声を使ってじゃんけんしよう。</p>
     <p>ボタンを押して出す手を「じゃんけん　パー!」のように声をだそう！</p>
-    <button id="btn">最初はグー！！！！！</button>
+   
+
+
+<div class="vs-f">
+    <div class="vs-f1">
+        <div class="you">YOU</div>
+        <button id="btn" class="btn">最初はグー！！！！！</button>
+       
+        <div  class="f1-img">
+            <img id="f1-img" src="" alt="">
+            </div>
+
+
+
+    </div>
+
+    <div class="vs-f2">
+        <div class="cpu">CPU</div>
+
+ <div>コンピュータの出した手は？「<span id="pc_hands">なに？</span>」</div>
+ <div  class="f2-img">
+     <img id="f2-img" src="" alt="">
+ </div>
+    </div>
+</div>
 
     <div id="come"></div>
     
-    <div>コンピュータの出した手は？「<span id="pc_hands">なに？</span>」</div>
-    <div id="judgment"></div>
-
-    <script>
-// domの宣言
-var pc_hands = document.querySelector("#pc_hands");
-   var judgment = document.querySelector("#judgment");
-
-
-
-
-
-        // 音声認識
-var btn = document.querySelector("#btn");
-var content = document.querySelector("#content");
-
-// Web Speech API
-var speech = new webkitSpeechRecognition();
-
-// 日本語認識
-speech.lang = "ja";
-
-
-// クリックイベ
-// #btnをクリックすると関数function{}が発動する。
-btn.addEventListener("click",function(){    
-// 発動する内容
-speech.start();
-btn.textContent = "認識中...";
-
-});
-
-//処理結果
-speech.addEventListener("result",function(e){
-// すピーチを発動した結果を得る処理
-console.log(e);
-speech.stop();
-btn.textContent = "もう一度";
-// 発生された音声をtxteに取り出す
-let hand = e.results[0][0].transcript;
-
-
-
-
-// グーの処理
-if(hand =="じゃんけんグー" ){
-    let myhand =1
-   console.log(myhand)
-    let pcHand = Math.floor(Math.random()*3+1);
-    console.log("pcHand" + pcHand)
-    if(pcHand==2){
-        var pcView="チョキ"
-        var jView="あなたの勝ち"
-    }
-    else if(pcHand==3){
-        var pcView="パー"
-        var jView="あなたの負け"
-    }
-    else if(pcHand==1){
-        var pcView="グー"
-        var jView="引き分け"
-    }
-    pc_hands.innerHTML = pcView;
-    judgment.innerHTML = jView;
-
-    const come = document.querySelector("#come");
-    come.innerHTML ="認識完了！いいね！"
-}
-
-// チョキの処理
-else if(hand == "じゃんけん チョキ"){
-    let myhand =2
-   console.log(myhand)
-    var pcHand = Math.floor(Math.random()*3+1);
-    console.log("pcHand" + pcHand);
-    if(pcHand==3){
-        var pcView="パー"
-        var jView="あなたの勝ち"
-    }
-    else if(pcHand==1){
-        var pcView="グー"
-        var jView="あなたの負け"
-    }
-    else if(pcHand==2){
-        var pcView="チョキ"
-        var jView="引き分け"
-    }
-    pc_hands.innerHTML = pcView;
-    judgment.innerHTML = jView;
-
-    const come = document.querySelector("#come");
-    come.innerHTML ="認識完了！いいね！"
-}
-
-// パーの処理
-else if(hand == "じゃんけんパー"){
-    let myhand =3
-   console.log(myhand)
-    var pcHand = Math.floor(Math.random()*3+1);
-    console.log("pcHand" + pcHand);
-    if(pcHand==1){
-        var pcView="グー"
-        var jView="あなたの勝ち"
-    }
-    else if(pcHand==2){
-        var pcView="チョキ"
-        var jView="あなたの負け"
-    }
-    else if(pcHand==3){
-        var pcView="パー"
-        var jView="引き分け"
-    }
-    pc_hands.innerHTML = pcView;
-    judgment.innerHTML = jView;
-
-    const come = document.querySelector("#come");
-    come.innerHTML ="認識完了！いいね！"
-}
-// ポイの処理
-else if(hand == "じゃんけんぽい"){
-    let non ="notpoi"
-   console.log(non)
- 
-    const come = document.querySelector("#come");
-    come.innerHTML ="ポイじゃないよ。さあ、もう一回！"
-}
-// 認識不可の処理
-else{
-    let non ="error"
-   console.log(non)
     
+    <div id="judgment"></div>
+</main>
+<footer>
+<p class="s">
+    @shon
+</p>
+</footer>
+<script>
+    // 宣言
+    var pc_hands = document.querySelector("#pc_hands");
+    var judgment = document.querySelector("#judgment");
+    var img1 = document.querySelector("#f1-img");
+    var img2 = document.querySelector("#f2-img");
 
-    const come = document.querySelector("#come");
-    come.innerHTML ="君は活舌が悪いね。もう一回ボタンを押して言ってみな。"
-}
+    
+    
+    
+    
+            // 音声認識
+    var btn = document.querySelector("#btn");
+    var content = document.querySelector("#content");
+    
+    // Web Speech API
+    var speech = new webkitSpeechRecognition();
+    
+    // 日本語認識
+    speech.lang = "ja";
+    
+    
+    // クリックイベ
+    // #btnをクリックすると関数function{}が発動する。
+    btn.addEventListener("click",function(){    
+    // 発動する内容
+    speech.start();
+    btn.textContent = "認識中...";
+    
+    });
+    
+    //処理結果
+    speech.addEventListener("result",function(e){
+    // すピーチを発動した結果を得る処理
+    console.log(e);
+    speech.stop();
+    btn.textContent = "もう一度";
+    judgment.style.fontSize = "50px";
+    judgment.style.color = "#fff0000";
+
+    // 発生された音声をtxteに取り出す
+    let hand = e.results[0][0].transcript;
+    
+    
+    
+    
+    // グーの処理
+    if(hand =="じゃんけんグー" ){
+        img1.src = "img/g.png";
+        let myhand =1
+       console.log(myhand)
+        let pcHand = Math.floor(Math.random()*3+1);
+        console.log("pcHand" + pcHand)
+        if(pcHand==2){
+            img2.src = "img/c.png";
+            var pcView="チョキ"
+            var jView="あなたの勝ち"
+        }
+        else if(pcHand==3){
+            img2.src = "img/p.png";
+            var pcView="パー"
+            var jView="あなたの負け"
+        }
+        else if(pcHand==1){
+            img2.src = "img/g.png";
+            var pcView="グー"
+            var jView="引き分け"
+        }
+        pc_hands.innerHTML = pcView;
+        judgment.innerHTML = jView;
+        
+
+        const come = document.querySelector("#come");
+        come.innerHTML ="認識完了！いいね！"
+    }
+    
+    // チョキの処理
+    else if(hand == "じゃんけん チョキ"){
+        img1.src = "img/c.png";
+        let myhand =2
+       console.log(myhand)
+        var pcHand = Math.floor(Math.random()*3+1);
+        console.log("pcHand" + pcHand);
+        if(pcHand==3){
+            img2.src = "img/p.png";
+            var pcView="パー"
+            var jView="あなたの勝ち"
+        }
+        else if(pcHand==1){
+            img2.src = "img/g.png";
+            var pcView="グー"
+            var jView="あなたの負け"
+        }
+        else if(pcHand==2){
+            img2.src = "img/c.png";
+            var pcView="チョキ"
+            var jView="引き分け"
+        }
+        pc_hands.innerHTML = pcView;
+        judgment.innerHTML = jView;
+    
+        const come = document.querySelector("#come");
+        come.innerHTML ="認識完了！いいね！"
+    }
+    
+    // パーの処理
+    else if(hand == "じゃんけんパー"){
+        img1.src = "img/p.png";
+        let myhand =3
+       console.log(myhand)
+        var pcHand = Math.floor(Math.random()*3+1);
+        console.log("pcHand" + pcHand);
+        if(pcHand==1){
+            img2.src = "img/g.png";
+            var pcView="グー"
+            var jView="あなたの勝ち"
+        }
+        else if(pcHand==2){
+            img2.src = "img/c.png";
+            var pcView="チョキ"
+            var jView="あなたの負け"
+        }
+        else if(pcHand==3){
+            img2.src = "img/p.png";
+            var pcView="パー"
+            var jView="引き分け"
+        }
+        pc_hands.innerHTML = pcView;
+        judgment.innerHTML = jView;
+    
+        const come = document.querySelector("#come");
+        come.innerHTML ="認識完了！いいね！"
+    }
+    // ポイの処理
+    else if(hand == "じゃんけんぽい"){
+        let non ="notpoi"
+       console.log(non)
+     
+        const come = document.querySelector("#come");
+        come.innerHTML ="ポイじゃないよ。さあ、もう一回！"
+    }
+    // 認識不可の処理
+    else{
+        let non ="error"
+       console.log(non)
+        
+    
+        const come = document.querySelector("#come");
+        come.style.fontSize ="40px" 
+        come.innerHTML ="君は活舌が悪いね。もう一回ボタンを押して言ってみな。"
+    }
+    
+    
+    });
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        </script>
 
 
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </script>
 </body>
 </html>
